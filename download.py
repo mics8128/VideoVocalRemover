@@ -2,10 +2,14 @@ from pytube import YouTube
 import os
 import demucs.separate
 import shlex
+import sys
 
-# 獲取 YouTube 連結
-url = input("請輸入 YouTube 連結: ")
-# url = "https://www.youtube.com/watch?v=N9XgnvGaZxk"
+# 從指令取得參數
+url = sys.argv[1]
+
+# 如果未取得參數獲取 YouTube 連結
+if(url == ""):
+    url = input("請輸入 YouTube 連結: ")
 
 # 使用 pytube 下載影片
 yt = YouTube(url)

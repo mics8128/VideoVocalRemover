@@ -56,16 +56,16 @@ output_no_vocals_file = os.path.join(
     no_vocals_path, f"{video_name}_NoVocals.mp4")
 output_original_file = os.path.join(original_path, f"{video_name}.mp4")
 
-# 左聲道用 no_vocals_file 右聲道用 video_file 影片用 video_file
+# 左聲道用 no_vocals_file 右聲道用 video_file 影片用 video_file 輸出到 output_ktv_file
 if not os.path.exists(output_ktv_file):
     os.system(
-        f"ffmpeg  -i \"{video_file}\" -i \"{no_vocals_file}\" -filter_complex \"[0:a][1:a]amerge=inputs=2,pan=stereo|c0<c2+c3|c1<c0+c1\" -map 0:v -c:v copy \"{output_ktv_file}\"")
+        f"ffmpeg -i \"{video_file}\" -i \"{no_vocals_file}\" -filter_complex \"[0:a][1:a]amerge=inputs=2,pan=stereo|c0<c2+c3|c1<c0+c1\" -map 0:v -c:v copy \"{output_ktv_file}\"")
 
-# 聲音用 no_vocals_file 影片用 video_file
+# 聲音用 no_vocals_file 影片用 video_file 輸出到 output_no_vocals_file
 if not os.path.exists(output_no_vocals_file):
     os.system(
         f"ffmpeg -i \"{video_file}\" -i \"{no_vocals_file}\" -map 1:a -map 0:v -c:v copy \"{output_no_vocals_file}\"")
 
-# 複製原本的影片到 output
+# 複製原本的影片到 output_original_file
 if not os.path.exists(output_original_file):
     shutil.copy(video_file, output_original_file)

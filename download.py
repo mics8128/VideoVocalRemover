@@ -1,6 +1,7 @@
 from pytube import YouTube
 import demucs.separate
 import os
+import requests
 import shlex
 import shutil
 import sys
@@ -26,6 +27,14 @@ original_path = os.path.join(output_path, 'Original')
 for path in [temp_path, ktv_path, no_vocals_path, original_path]:
     if not os.path.exists(path):
         os.makedirs(path)
+
+# 下載模型
+# https://github.com/TRvlvr/model_repo/releases/download/all_public_uvr_models/5_HP-Karaoke-UVR.pth
+# model_file = os.path.join(temp_path, "model.pth")
+# if not os.path.exists(model_file):
+#     model_url = "https://github.com/TRvlvr/model_repo/releases/download/all_public_uvr_models/5_HP-Karaoke-UVR.pth"
+#     r = requests.get(model_url, allow_redirects=True)
+#     open(model_file, 'wb').write(r.content)
 
 # 使用 pytube 下載影片
 yt = YouTube(url)

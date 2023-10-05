@@ -7,14 +7,15 @@
     virtualenv vvr
     .\vvr\Scripts\activate
     python -m pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
-    python -m pip install demucs pytube
+    python -m pip install -r requirements.txt
 ```
 
 ## without Nvidia GPU
 ```
     virtualenv vvr
     .\vvr\Scripts\activate
-    python -m pip install torch torchvision torchaudio demucs pytube
+    python -m pip install torch torchvision torchaudio
+    python -m pip install -r requirements.txt
 ```
 
 # Start in Windows

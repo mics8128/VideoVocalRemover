@@ -25,7 +25,7 @@ original_path = os.path.join(output_path, 'Original')
 async def removeVoice(update: Update, _: CallbackContext) -> None:
     url = update.message.text
     if not is_youtube_url(url):
-        await update.message.reply_text(f'Usage: /removeVoice <youtube_url>')
+        await help(update, _)
         return
 
     processingMsg = await update.message.reply_text(f'影片處理中... 請稍後')
@@ -66,7 +66,7 @@ async def removeVoice(update: Update, _: CallbackContext) -> None:
 
 
 async def help(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    await update.message.reply_text(f'Usage: paste a youtube.')
+    await update.message.reply_text(f'請貼上一個 youtube 影片連結')
 
 app = ApplicationBuilder().token(tg_token).build()
 app.add_handler(MessageHandler(filters.TEXT, removeVoice))
